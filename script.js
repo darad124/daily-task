@@ -1,5 +1,5 @@
 // Get the elements from the HTML document
-console.log("Script loaded successfully");
+console.log("%cScript loaded successfully", "color: green; font-weight: bold");
 
 const taskForm = document.getElementById("task-form");
 const taskInput = document.getElementById("task-input");
@@ -59,7 +59,6 @@ taskList.addEventListener("click", function(e) {
 });
 
 // Define a function to load the tasks from the local storage
-// Define a function to load the tasks from the local storage
 function loadTasks() {
     const storedTasks = localStorage.getItem("tasks");
     if (storedTasks) {
@@ -77,10 +76,6 @@ function loadTasks() {
     }
 }
 
-// Modify the displayTask function to accept timeRemaining as a parameter
-
-
-
 // Define a function to save the tasks to the local storage
 function saveTasks() {
     const tasksJSON = JSON.stringify(tasks);
@@ -88,7 +83,6 @@ function saveTasks() {
 }
 
 // Define a function to display a task on the page
-
 function displayTask(task, timeRemainingParam) {
     const taskWrapper = document.createElement("div");
     const taskItem = document.createElement("li");
@@ -110,7 +104,7 @@ function displayTask(task, timeRemainingParam) {
                 clearInterval(timerInterval);
                 timerDiv.textContent = "Time's up!";
                 if (!task.completed) {
-                    taskWrapper.style.backgroundColor = "red"; // Task turns red if not completed in time
+                    taskWrapper.style.backgroundColor = "#ff7f7f"; // Task turns red if not completed in time
                 }
             }
             timeRemaining--;
@@ -137,16 +131,12 @@ function displayTask(task, timeRemainingParam) {
 
     // Set background color to green for completed tasks
     if (task.completed) {
-        taskWrapper.style.backgroundColor = "green";
+        taskWrapper.style.backgroundColor = "#7fe57f";
     } else {
         // Set background color to white for tasks still running
-        taskWrapper.style.backgroundColor = "white";
+        taskWrapper.style.backgroundColor = "#f9f9f9";
     }
 }
-
-
-
-
 
 // Define a function to display a message on the page
 function showMessage(text) {
@@ -189,7 +179,7 @@ function completeTask(taskId) {
         saveTasks();
         const taskElement = document.querySelector(`[data-id='${taskId}']`);
         if (taskElement) {
-            taskElement.classList.toggle("completed");
+            taskElement.classList.toggle("completed", task.completed);
             showMessage("Task completed successfully");
         }
     }
